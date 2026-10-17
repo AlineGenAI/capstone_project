@@ -22,6 +22,38 @@ class ClassifyTicketTests(unittest.TestCase):
         self.assertIn("I cannot sign in", ask.call_args.args[0])
 
     @patch("src.classifier.llm.ask")
+    def test_prompt_uses_business_impact_not_urgency_wording(self, ask):
+        ask.return_value = (
+            '{"category":"bug_report","urgency":"low",'
+            '"rationale":"The issue does not prevent work."}'
+        )
+
+        result = classify_ticket(
+            "ASAP!!! The logo is misaligned, but all functions work."
+        )
+
+        prompt = ask.call_args.kwargs["system"]
+        self.assertEqual(result.urgency, Urgency.LOW)
+        self.assertIn('"urgent" or "ASAP"', prompt)
+        self.assertIn("exclamation marks", prompt)
+        self.assertIn("high only when the customer is blocked from working", prompt)
+        self.assertIn("no impact on the customer's ability to work", prompt)
+
+    @patch("src.classifier.llm.ask")
+    def test_prompt_uses_highest_urgency_for_multiple_requests(self, ask):
+        ask.return_value = (
+            '{"category":"bug_report","urgency":"high",'
+            '"rationale":"The customer is blocked from working."}'
+        )
+
+        result = classify_ticket("Printer is slow; I am totally out of the system.")
+
+        prompt = ask.call_args.kwargs["system"]
+        self.assertEqual(result.urgency, Urgency.HIGH)
+        self.assertIn("contains multiple requests", prompt)
+        self.assertIn("urgency supported by any of them", prompt)
+
+    @patch("src.classifier.llm.ask")
     def test_accepts_json_code_fence(self, ask):
         ask.return_value = '```json\n{"category":"other","urgency":"low"}\n```'
 

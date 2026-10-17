@@ -15,10 +15,17 @@ Return only a JSON object with exactly these fields:
 Choose account_access for sign-in, permissions, or account problems; bug_report
 for something that is broken or not behaving as expected; feature_request for
 a requested new capability; and other when none of those fit.
-Urgency reflects the impact and time sensitivity described in the ticket:
-high means a serious business impact or work-stopping issue, medium means
-meaningful but not fully blocking impact, and low means limited impact or a
-routine request. Do not invent details that the ticket does not provide."""
+Determine urgency strictly from the impact on the customer's ability to work.
+Do not use the words "urgent" or "ASAP", exclamation marks, or similar wording
+as urgency evidence by themselves:
+- high only when the customer is blocked from working or totally out of the
+  system;
+- medium when the customer is partially blocked from working, for example
+  when an application is out of service;
+- low when there is no impact on the customer's ability to work.
+If a ticket contains multiple requests, assess each one and use the highest
+urgency supported by any of them. Do not invent details that the ticket does
+not provide."""
 
 
 def classify_ticket(ticket: str) -> ClassificationResult:
