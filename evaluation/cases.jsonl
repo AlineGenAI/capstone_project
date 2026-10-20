@@ -1,0 +1,12 @@
+{"ticket":"I am locked out of my work account and cannot sign in to the store systems.","category":"account_access","urgency":"high"}
+{"ticket":"Please add the inventory dashboard to my account; I can sign in but lack permission.","category":"account_access","urgency":"medium"}
+{"ticket":"I forgot my password and need help resetting it before my shift starts.","category":"account_access","urgency":"medium"}
+{"ticket":"The checkout application crashes every time I scan an item, and the queue is growing.","category":"bug_report","urgency":"high"}
+{"ticket":"The sales report shows yesterday's totals instead of today's totals.","category":"bug_report","urgency":"medium"}
+{"ticket":"The printer occasionally produces a blank page, but printing works after retrying.","category":"bug_report","urgency":"low"}
+{"ticket":"Could we add a way to export the weekly stock report as a spreadsheet?","category":"feature_request","urgency":"low"}
+{"ticket":"Please add dark mode to the staff scheduling application.","category":"feature_request","urgency":"low"}
+{"ticket":"It would help to get a notification when a new purchase order is approved.","category":"feature_request","urgency":"medium"}
+{"ticket":"Where can I find the IT team's opening hours?","category":"other","urgency":"low"}
+{"ticket":"Our store's network is down and staff cannot process any transactions.","category":"other","urgency":"high"}
+{"ticket":"I need a replacement mouse for my workstation; the current one is uncomfortable.","category":"other","urgency":"low"}
